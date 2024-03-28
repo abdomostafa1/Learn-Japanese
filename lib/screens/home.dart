@@ -27,6 +27,9 @@ class HomeScreen extends StatelessWidget {
               name: 'Family Members',
               color: Color(0xFF578A35),
               onTap: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context){
+                  return FamilyMembersScreen();
+                }));
               }),
           Category(
               name: 'Colors',
