@@ -1,42 +1,49 @@
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:toku/models/number.dart';
 
-class NumberItem extends StatelessWidget {
-  NumberItem(this.number);
+import '../models/item.dart';
 
-  Number number;
+class ListItem extends StatelessWidget {
+  ListItem({required this.item, required this.color});
+
+  Item item;
+  Color color;
 
   @override
   Widget build(BuildContext context) {
     return Container(
       height: 100,
-      color: Color(0xffF09135),
+      color: color,
       child: Row(
         children: [
-          Container(color: Color(0xffFFF4DD), child: Image.asset(number.image)),
+          Container(color: Color(0xffFFF4DD), child: Image.asset(item.image)),
           SizedBox(width: 16),
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                number.jpName,
+                item.jpName,
                 style: TextStyle(fontSize: 18, color: Colors.white),
               ),
               Text(
-                number.enName,
-                style: TextStyle(fontSize: 18, color: Colors.white),
+                item.enName,
+                style: TextStyle(fontSize: 16, color: Colors.white),
               )
             ],
           ),
           Spacer(flex: 1),
-          const Padding(
-            padding: EdgeInsets.all(8.0),
-            child: Icon(
+          IconButton(
+            onPressed: () async {
+              final audioPLayer = AudioPlayer();
+              await audioPLayer.play(AssetSource(item.sound));
+            },
+            icon: Icon(
               Icons.play_arrow,
               color: Colors.white,
             ),
           ),
+          SizedBox(width: 16)
         ],
       ),
     );

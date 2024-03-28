@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:toku/screens/home.dart';
+import 'package:learn_Japanese/screens/home.dart';
 
 void main() {
   runApp(LearnJapaneseApp());
